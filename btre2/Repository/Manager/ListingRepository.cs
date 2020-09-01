@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace btre2.Repository.Manager
 {
@@ -18,11 +21,19 @@ namespace btre2.Repository.Manager
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ListingRepository(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public ListingRepository(
+                            ApplicationDbContext context, 
+                            IWebHostEnvironment hostEnvironment,
+                            UserManager<ApplicationUser> userManager,
+                            IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _hostEnvironment = hostEnvironment;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public Listing GetListing(int id)
@@ -157,9 +168,12 @@ namespace btre2.Repository.Manager
 
         }
 
-        public IEnumerable<Listing> GetListingForSpecificRealtor()
+        public IEnumerable<Listing> GetListingsForSpecificRealtor(string loggedInUserEmail)
         {
-            throw new NotImplementedException();
+            return _context.Listings
+                                .Include(x => x.Realtor)
+                                .Where(x => x.Realtor.Email == loggedInUserEmail)
+                                .ToList();
         }
 
         public IEnumerable<Listing> GetPagedListings(int pageIndex = 1)
@@ -170,5 +184,6 @@ namespace btre2.Repository.Manager
             model.Action = "Listings";
             return model;
         }
+
     }
 }

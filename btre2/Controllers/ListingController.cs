@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using btre2.Extensions;
 using btre2.Models;
 using btre2.Repository.Interface;
 using btre2.ViewModels;
@@ -35,9 +37,10 @@ namespace btre2.Controllers
             this.userManager = userManager;
             this.roleManager = roleManager;
         }
-        public IActionResult Listings()
+        public async Task<IActionResult> Listings()
         {
-            var listings = listingRepo.GetListings();
+            var userEmail = User.FindFirstValue(ClaimTypes.Name);
+            var listings = listingRepo.GetListingsForSpecificRealtor(userEmail);
             return View(listings);
         }
 

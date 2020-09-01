@@ -16,7 +16,7 @@ namespace btre2.Repository.Interface
         Listing Update(Listing listingChanges);
         string Delete(int id);
         IEnumerable<Listing> Search(SearchViewModel model);
-        IEnumerable<Listing> GetListingForSpecificRealtor();
         IEnumerable<Listing> GetPagedListings(int pageIndex);
+        IEnumerable<Listing> GetListingsForSpecificRealtor(string loggedInUserEmail);
     }
 }
