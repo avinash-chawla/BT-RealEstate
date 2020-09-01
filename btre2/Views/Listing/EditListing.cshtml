@@ -1,0 +1,306 @@
+﻿@model btre2.ViewModels.EditListingViewModel
+
+@{
+    ViewData["Title"] = "Edit Listing";
+    var photoMain = "~/images/" + (Model.ExistingPhotoMain ?? "default/noimage.png");
+    var photo1 = "~/images/" + (Model.ExistingPhoto1 ?? "default/noimage.png");
+    var photo2 = "~/images/" + (Model.ExistingPhoto2 ?? "default/noimage.png");
+    var photo3 = "~/images/" + (Model.ExistingPhoto3 ?? "default/noimage.png");
+    var photo4 = "~/images/" + (Model.ExistingPhoto4 ?? "default/noimage.png");
+    var photo5 = "~/images/" + (Model.ExistingPhoto5 ?? "default/noimage.png");
+    var photo6 = "~/images/" + (Model.ExistingPhoto6 ?? "default/noimage.png");
+}
+
+<div class="container">
+
+    <h1 class="mt-2">Edit Listing</h1>
+    <hr />
+    <form asp-action="EditListing" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="City" class="control-label"></label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="State" class="control-label"></label>
+                    <input asp-for="State" class="form-control" />
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="ZipCode" class="control-label"></label>
+                    <input asp-for="ZipCode" class="form-control" />
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Bedrooms" class="control-label"></label>
+                    <input asp-for="Bedrooms" class="form-control" />
+                    <span asp-validation-for="Bedrooms" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Bathrooms" class="control-label"></label>
+                    <input asp-for="Bathrooms" class="form-control" />
+                    <span asp-validation-for="Bathrooms" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Garage" class="control-label"></label>
+                    <input asp-for="Garage" class="form-control" />
+                    <span asp-validation-for="Garage" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Sqft" class="control-label"></label>
+                    <input asp-for="Sqft" class="form-control" />
+                    <span asp-validation-for="Sqft" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="LotSize" class="control-label"></label>
+                    <input asp-for="LotSize" class="form-control" />
+                    <span asp-validation-for="LotSize" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photoMain" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
+                <div class="form-group">
+                    <label asp-for="PhotoMain" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="PhotoMain" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="PhotoMain" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photo1" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
+                <div class="form-group">
+                    <label asp-for="Photo1" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Photo1" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="Photo1" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photo2" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
+                <div class="form-group">
+                    <label asp-for="Photo2" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Photo2" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="Photo2" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photo3" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
+                <div class="form-group">
+                    <label asp-for="Photo3" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Photo3" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="Photo3" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photo4" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
+                <div class="form-group">
+                    <label asp-for="Photo4" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Photo4" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="Photo4" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photo5" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
+                <div class="form-group">
+                    <label asp-for="Photo5" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Photo5" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="Photo5" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photoMain" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
+                <div class="form-group">
+                    <label asp-for="Photo6" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Photo6" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="Photo6" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="RealtorId" class="control-label"></label>
+                    <select asp-for="RealtorId" asp-items="@(new SelectList(Model.Realtors, "Id", "Name"))" class="form-control">
+                        <option value="">Please select...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 mt-4 pt-3">
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsPublished" /> @Html.DisplayNameFor(model => model.IsPublished)
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group d-inline-block">
+            <input type="submit" value="Save Changes" class="btn btn-primary" />
+        </div>
+        <div class="d-inline-block ml-2" style="position: relative; top: 7px;">
+            <a  class="btn btn-outline-secondary mb-3"asp-action="Listings">Back to List</a>
+        </div>
+
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ExistingPhotoMain" />
+        <input type="hidden" asp-for="ExistingPhoto1" />
+        <input type="hidden" asp-for="ExistingPhoto2" />
+        <input type="hidden" asp-for="ExistingPhoto3" />
+        <input type="hidden" asp-for="ExistingPhoto4" />
+        <input type="hidden" asp-for="ExistingPhoto5" />
+        <input type="hidden" asp-for="ExistingPhoto6" />
+    </form>
+
+
+
+
+</div>
+
+@section scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}

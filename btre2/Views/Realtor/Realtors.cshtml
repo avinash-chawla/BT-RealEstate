@@ -1,0 +1,66 @@
+﻿@model IEnumerable<btre2.Models.Realtor>
+
+@{
+    ViewData["Title"] = "Realtors";
+}
+
+
+<div class="container">
+    <h1>Realtors</h1>
+    <p>
+        <a asp-action="CreateRealtor" class="btn btn-success m-2">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsMvp)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var (item, index) in Model.Select((value, i) => (value, i)))
+            {
+                    <tr>
+                        <td>
+                            @(index+1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsMvp)
+                        </td>
+                        <td>
+                            <form asp-controller="Admin" asp-action="DeleteRealtor" asp-route-id="@item.Id">
+
+                                <a asp-action="EditRealtor" asp-route-id="@item.Id">Edit</a> |
+                                <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this data');" class="btn btn-link" style="margin-left: -10px; margin-bottom: 3px" />
+                            </form>
+                        </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>

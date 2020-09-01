@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container">
+        <a class="navbar-brand" asp-action="index" asp-controller="home">
+            <img src="~/img/logo.png" class="logo" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav">
+                
+                <li class="@(ViewBag.Current == "Index" ? "nav-item mr-3 active" : "nav-item mr-3")">
+                    <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
+                </li>
+                <li class="@(ViewBag.Current == "About" ? "nav-item mr-3 active" : "nav-item mr-3")">
+                    <a class="nav-link" asp-action="About" asp-controller="Home">About</a>
+                </li>
+                <li class="@(ViewBag.Current == "Listings" ? "nav-item mr-3 active" : "nav-item mr-3")">
+                    <a class="nav-link" asp-action="Listings" asp-controller="Home">Featured Listings</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    
+                    if (User.IsInRole("Admin") || User.IsInRole("Realtor"))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-users-cog"></i> Manage
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" asp-controller="Listing"
+                                   asp-action="Listings">Listings</a>
+                                @if(User.IsInRole("Admin"))
+                                {
+                                    <a class="dropdown-item" asp-controller="Realtor"
+                                       asp-action="Realtors">Realtors</a>
+                                    <a class="dropdown-item" asp-controller="Role"
+                                       asp-action="ListRoles">Roles</a>
+                                }
+
+                            </div>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <form method="post" asp-controller="account" asp-action="logout" style="margin:7px; padding:0px">
+                            <button type="submit" style="width:auto"
+                                    class="nav-link btn btn-link py-0">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i> Logout @User.Identity.Name
+                            </button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+
+
+                    <li class="nav-item mr-3">
+                        <a class="nav-link" asp-controller="account" asp-action="register">
+                            <i class="fas fa-user"></i> Register
+                        </a>
+                    </li>
+                    <li class="nav-item mr-3">
+                        <a class="nav-link" asp-controller="account" asp-action="login">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login
+                        </a>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</nav>

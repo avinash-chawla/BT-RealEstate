@@ -1,0 +1,127 @@
+﻿@model IEnumerable<btre2.Models.Listing>
+@using System.Globalization 
+@{
+    ViewData["Title"] = "Listings";
+    NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
+}
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a asp-action="index">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item active"> Browse Listings</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Listings -->
+<section id="listings" class="py-4">
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in @Model)
+            {
+                var daysAgo = (DateTime.Now - item.ListDate.Value).Days.ToString();
+                if (daysAgo == "0")
+                {
+                    daysAgo = "Posted Today";
+                }
+                else
+                {
+                    daysAgo = daysAgo + "days ago";
+                }
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card listing-preview">
+                        <img class="card-img-top" src="~/images/@item.PhotoMain" alt="">
+                        <div class="card-img-overlay">
+                            <h2>
+                                <span class="badge badge-secondary text-white">@item.Price.ToString("C", nfi)</span>
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="listing-heading text-center">
+                                <h4 class="text-primary">@item.Address</h4>
+                                <p>
+                                    <i class="fas fa-map-marker text-secondary"></i> @item.City @item.State, @item.ZipCode
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="row py-2 text-secondary">
+                                <div class="col-6">
+                                    <i class="fas fa-th-large"></i> Sqft: @item.Sqft
+                                </div>
+                                <div class="col-6">
+                                    <i class="fas fa-car"></i> Garage: @item.Garage
+                                </div>
+                            </div>
+                            <div class="row py-2 text-secondary">
+                                <div class="col-6">
+                                    <i class="fas fa-bed"></i> Bedrooms: @item.Bedrooms
+                                </div>
+                                <div class="col-6">
+                                    <i class="fas fa-bath"></i> Bathrooms: @item.Bathrooms
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row py-2 text-secondary">
+                                <div class="col-12">
+                                    <i class="fas fa-user"></i> @item.Realtor.Name
+                                </div>
+                            </div>
+                            <div class="row text-secondary pb-2">
+                                <div class="col-6">
+                                    <i class="fas fa-clock"></i> @daysAgo
+                                </div>
+                            </div>
+                            <hr>
+                            <a asp-action="listing" asp-controller="home" asp-route-id="@item.Id" class="btn btn-primary btn-block">More Info</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @*<cs-pager cs-paging-pagenumber="4"
+                  cs-paging-totalitems="4"
+                  cs-paging-pagesize="1"
+                  cs-pagenumber-params="pagenumber"
+                  asp-controller="Home"
+                  asp-action="Listings"
+                  
+                  cs-pager-li-current-class="page-item active"
+                  cs-pager-li-other-class="page-item"
+                  cs-pager-li-non-active-class="page-item disabled"
+                  cs-pager-link-current-class="page-link"
+                  cs-pager-link-other-class="page-link"></cs-pager>*@
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">&laquo;</a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
