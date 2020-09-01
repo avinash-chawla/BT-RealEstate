@@ -6113,7 +6113,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AVI\\.nuget\\packages\\": {}
+    "C:\\Users\\AVI\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -6124,6 +6125,9 @@
       "packagesPath": "C:\\Users\\AVI\\.nuget\\packages\\",
       "outputPath": "E:\\Workspace\\btre2\\btre2\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\AVI\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

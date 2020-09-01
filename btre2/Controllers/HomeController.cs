@@ -61,14 +61,24 @@ namespace btre2.Controllers
             return View(listing);
         }
 
-        public IActionResult Search(SearchViewModel model)
+        public IActionResult Search(SearchViewModel searchModel)
         {
             var choices = new Choices();
             ViewBag.State_Choices = choices.State;
             ViewBag.Price_Choices = choices.Price;
             ViewBag.Bedroom_Choices = choices.Bedrooms;
 
-            model.Listings = listingRepository.Search(model);
+            var listings = listingRepository.Search(searchModel);
+
+            var model = new SearchViewModel()
+            {
+                Listings = listings,
+                Price = searchModel.Price,
+                Bedrooms = searchModel.Bedrooms,
+                City = searchModel.City,
+                State = searchModel.State,
+                Keyword = searchModel.Keyword
+            };
             return View(model);
         }
 

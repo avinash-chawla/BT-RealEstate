@@ -132,7 +132,7 @@ namespace btre2.Repository.Manager
 
         public IEnumerable<Listing> Search(SearchViewModel model)
         {
-            IEnumerable<Listing> listings = _context.Listings;
+            IEnumerable<Listing> listings = _context.Listings.Include(x => x.Realtor);
             if (model.Bedrooms.HasValue)
             {
                 listings = listings.Where(m => m.Bedrooms <= model.Bedrooms).OrderByDescending(x => x.Bedrooms);
@@ -155,7 +155,7 @@ namespace btre2.Repository.Manager
 
             if (!String.IsNullOrEmpty(model.Keyword))
             {
-                listings = listings.Where(m => m.Description == model.Keyword);
+                listings = listings.Where(m => m.Description.ToLower().Contains(model.Keyword.ToLower()));
             }
 
             return listings.ToList();
