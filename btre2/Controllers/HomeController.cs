@@ -38,13 +38,23 @@ namespace btre2.Controllers
             return View();
         }
 
+        //[Authorize]
+        //public IActionResult Listings()
+        //{
+        //    ViewBag.Current = "Listings";
+        //    var listings = listingRepository.GetListings();
+        //    return View(listings);
+        //}
+
         [Authorize]
-        public IActionResult Listings()
+        public IActionResult Listings(int pageIndex = 1)
         {
             ViewBag.Current = "Listings";
-            var listings = listingRepository.GetListings();
+            var listings = listingRepository.GetPagedListings(pageIndex);
             return View(listings);
         }
+
+
 
         [Authorize]
         public IActionResult Listing(int id)
@@ -55,6 +65,11 @@ namespace btre2.Controllers
 
         public IActionResult Search(SearchViewModel model)
         {
+            var choices = new Choices();
+            ViewBag.State_Choices = choices.State;
+            ViewBag.Price_Choices = choices.Price;
+            ViewBag.Bedroom_Choices = choices.Bedrooms;
+
             model.Listings = listingRepository.Search(model);
             return View(model);
         }

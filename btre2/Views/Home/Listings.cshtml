@@ -1,5 +1,8 @@
-﻿@model IEnumerable<btre2.Models.Listing>
-@using System.Globalization 
+﻿@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+@model PagingList<btre2.Models.Listing>
+
+@using System.Globalization
 @{
     ViewData["Title"] = "Listings";
     NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
@@ -88,18 +91,22 @@
             }
         </div>
 
+        <nav aria-label="Products navigation example">
+            @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+        </nav>
+
         @*<cs-pager cs-paging-pagenumber="4"
-                  cs-paging-totalitems="4"
-                  cs-paging-pagesize="1"
-                  cs-pagenumber-params="pagenumber"
-                  asp-controller="Home"
-                  asp-action="Listings"
-                  
-                  cs-pager-li-current-class="page-item active"
-                  cs-pager-li-other-class="page-item"
-                  cs-pager-li-non-active-class="page-item disabled"
-                  cs-pager-link-current-class="page-link"
-                  cs-pager-link-other-class="page-link"></cs-pager>*@
+        cs-paging-totalitems="4"
+        cs-paging-pagesize="1"
+        cs-pagenumber-params="pagenumber"
+        asp-controller="Home"
+        asp-action="Listings"
+
+        cs-pager-li-current-class="page-item active"
+        cs-pager-li-other-class="page-item"
+        cs-pager-li-non-active-class="page-item disabled"
+        cs-pager-link-current-class="page-link"
+        cs-pager-link-other-class="page-link"></cs-pager>*@
 
 
         <div class="row">

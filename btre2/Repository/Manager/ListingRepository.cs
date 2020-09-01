@@ -5,6 +5,7 @@ using btre2.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,7 +33,7 @@ namespace btre2.Repository.Manager
 
         public IEnumerable<Listing> GetListings()
         {
-            var listings = _context.Listings.Include(x => x.Realtor).ToList();
+            var listings = _context.Listings.Include(x => x.Realtor).OrderByDescending(x=> x.ListDate).ToList();
             return listings;
         }
 
@@ -159,6 +160,15 @@ namespace btre2.Repository.Manager
         public IEnumerable<Listing> GetListingForSpecificRealtor()
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Listing> GetPagedListings(int pageIndex = 1)
+        {
+            var pageSize = 3;
+            var listings = GetListings();
+            var model = PagingList.Create(listings, pageSize, pageIndex);
+            model.Action = "Listings";
+            return model;
         }
     }
 }

@@ -17,5 +17,6 @@ namespace btre2.Repository.Interface
         string Delete(int id);
         IEnumerable<Listing> Search(SearchViewModel model);
         IEnumerable<Listing> GetListingForSpecificRealtor();
+        IEnumerable<Listing> GetPagedListings(int pageIndex);
     }
 }

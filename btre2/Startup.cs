@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using btre2.Models;
 using btre2.Repository.Interface;
 using btre2.Repository.Manager;
+using ReflectionIT.Mvc.Paging;
 
 namespace btre2
 {
@@ -42,6 +43,11 @@ namespace btre2
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddPaging(options => {
+                options.ViewName = "Bootstrap4";
+                options.PageParameterName = "pageindex";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
