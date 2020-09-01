@@ -54,8 +54,6 @@ namespace btre2.Controllers
             return View(listings);
         }
 
-
-
         [Authorize]
         public IActionResult Listing(int id)
         {

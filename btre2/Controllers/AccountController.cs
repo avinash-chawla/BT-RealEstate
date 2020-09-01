@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace btre.Controllers
 {
-    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -22,12 +21,14 @@ namespace btre.Controllers
             this.signInManager = signInManager;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -64,12 +65,14 @@ namespace btre.Controllers
             return RedirectToAction("index", "home");
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model, string ReturnUrl)
         {

@@ -37,8 +37,13 @@ namespace btre2.Controllers
             this.userManager = userManager;
             this.roleManager = roleManager;
         }
-        public async Task<IActionResult> Listings()
+        public IActionResult Listings()
         {
+            if(User.IsInRole("Admin"))
+            {
+                var list = listingRepo.GetListings();
+                return View(list);
+            }
             var userEmail = User.FindFirstValue(ClaimTypes.Name);
             var listings = listingRepo.GetListingsForSpecificRealtor(userEmail);
             return View(listings);
@@ -184,7 +189,7 @@ namespace btre2.Controllers
                 };
 
                 Listing updatedListing = listingRepo.Update(listing);
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Listings));
             }
             return View();
         }

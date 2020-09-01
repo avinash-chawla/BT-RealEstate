@@ -9,10 +9,6 @@ namespace btre2.ViewModels
 {
     public class SearchViewModel
     {
-        public SearchViewModel()
-        {
-            this.Listings = new List<Listing>();
-        }
         public IEnumerable<Listing> Listings { get; set; }
 
         [BindProperty(SupportsGet = true)]

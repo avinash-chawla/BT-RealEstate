@@ -94,41 +94,5 @@
         <nav aria-label="Products navigation example">
             @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
         </nav>
-
-        @*<cs-pager cs-paging-pagenumber="4"
-        cs-paging-totalitems="4"
-        cs-paging-pagesize="1"
-        cs-pagenumber-params="pagenumber"
-        asp-controller="Home"
-        asp-action="Listings"
-
-        cs-pager-li-current-class="page-item active"
-        cs-pager-li-other-class="page-item"
-        cs-pager-li-non-active-class="page-item disabled"
-        cs-pager-link-current-class="page-link"
-        cs-pager-link-other-class="page-link"></cs-pager>*@
-
-
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">&laquo;</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
 </section>

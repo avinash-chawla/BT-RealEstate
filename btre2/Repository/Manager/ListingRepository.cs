@@ -132,40 +132,33 @@ namespace btre2.Repository.Manager
 
         public IEnumerable<Listing> Search(SearchViewModel model)
         {
-            if (model != null)
+            IEnumerable<Listing> listings = _context.Listings;
+            if (model.Bedrooms.HasValue)
             {
-                IEnumerable<Listing> listings = null;
-                if (model.Bedrooms.HasValue)
-                {
-                    listings = _context.Listings.Where(m => m.Bedrooms == model.Bedrooms).ToList();
-                }
-
-                if (model.Price.HasValue)
-                {
-                    listings.Where(m => m.Price <= model.Price);
-                }
-
-                if (!String.IsNullOrEmpty(model.City))
-                {
-                    listings.Where(m => m.City == model.City);
-                }
-
-                if (!String.IsNullOrEmpty(model.State))
-                {
-                    listings.Where(m => m.State == model.State);
-                }
-
-                if (!String.IsNullOrEmpty(model.Keyword))
-                {
-                    listings.Where(m => m.Description == model.Keyword);
-                }
-
-                return listings;
-
+                listings = listings.Where(m => m.Bedrooms <= model.Bedrooms).OrderByDescending(x => x.Bedrooms);
             }
 
-            return _context.Listings.ToList();
+            if (model.Price.HasValue)
+            {
+                listings = listings.Where(m => m.Price <= model.Price);
+            }
 
+            if (!String.IsNullOrEmpty(model.City))
+            {
+                listings = listings.Where(m => m.City.ToLower().Contains(model.City.ToLower()));
+            }
+
+            if (!String.IsNullOrEmpty(model.State))
+            {
+                listings =listings.Where(m => m.State == model.State);
+            }
+
+            if (!String.IsNullOrEmpty(model.Keyword))
+            {
+                listings = listings.Where(m => m.Description == model.Keyword);
+            }
+
+            return listings.ToList();
         }
 
         public IEnumerable<Listing> GetListingsForSpecificRealtor(string loggedInUserEmail)

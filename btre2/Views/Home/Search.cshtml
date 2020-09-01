@@ -1,4 +1,7 @@
-﻿@model SearchViewModel
+﻿@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@model SearchViewModel
 @using System.Globalization
 @{
     ViewData["Title"] = "Listings";
@@ -43,7 +46,7 @@
                             <label class="sr-only">Bedrooms</label>
                             <select asp-for="@Model.Bedrooms" name="bedrooms" class="form-control">
                                 <option selected="true" disabled="disabled">Bedrooms (Any)</option>
-                                @foreach(var item in Bedroom)
+                                @foreach (var item in Bedroom)
                                 {
                                     <option value="@item.Key">@item.Value</option>
                                 }
@@ -52,11 +55,11 @@
                         <div class="col-md-6 mb-3">
                             <select asp-for="@Model.Price" name="price" class="form-control">
                                 <option selected="true" disabled="disabled">Max Price (All)</option>
-                                @foreach(var item in Price)
+                                @foreach (var item in Price)
                                 {
                                     <option value="@item.Key">$@item.Value</option>
                                 }
-                                
+
                             </select>
                         </div>
                     </div>
@@ -78,7 +81,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a asp-action="Listings">Browse Listings</a>
+                    <a asp-action="Listings" asp-controller="Home">Browse Listings</a>
                 </li>
                 <li class="breadcrumb-item active"> Search Results</li>
             </ol>
@@ -152,40 +155,9 @@
             }
         </div>
 
-        @*<cs-pager cs-paging-pagenumber="4"
-            cs-paging-totalitems="4"
-            cs-paging-pagesize="1"
-            cs-pagenumber-params="pagenumber"
-            asp-controller="Home"
-            asp-action="Listings"
 
-            cs-pager-li-current-class="page-item active"
-            cs-pager-li-other-class="page-item"
-            cs-pager-li-non-active-class="page-item disabled"
-            cs-pager-link-current-class="page-link"
-            cs-pager-link-other-class="page-link"></cs-pager>*@
-
-
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">&laquo;</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        @*<nav aria-label="Products navigation example">
+            @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model.Listings })
+        </nav>*@
     </div>
 </section>
