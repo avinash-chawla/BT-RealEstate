@@ -26,6 +26,7 @@ namespace btre2.Repository.Manager
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly string _connectionString;
 
         public ListingRepository(
                             ApplicationDbContext context, 
@@ -38,6 +39,7 @@ namespace btre2.Repository.Manager
             _hostEnvironment = hostEnvironment;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
+            _connectionString = configuration.GetConnectionString("defaultConnection");
         }
 
         public Listing GetListing(int id)

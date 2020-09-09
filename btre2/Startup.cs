@@ -30,7 +30,7 @@ namespace btre2
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<IListingRepository, ListingRepository>();
+            services.AddScoped<IListingRepository, ListingRepository2>();
             services.AddScoped<IRealtorRepository, RealtorRepository>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>

@@ -138,6 +138,9 @@ E:\Workspace\btre2\btre2\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.CShar
 E:\Workspace\btre2\btre2\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
 E:\Workspace\btre2\btre2\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 E:\Workspace\btre2\btre2\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Workspace\btre2\btre2\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+E:\Workspace\btre2\btre2\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\Workspace\btre2\btre2\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 E:\Workspace\btre2\btre2\obj\Debug\netcoreapp3.1\btre2.csproj.CoreCompileInputs.cache
 E:\Workspace\btre2\btre2\obj\Debug\netcoreapp3.1\btre2.MvcApplicationPartsAssemblyInfo.cs
 E:\Workspace\btre2\btre2\obj\Debug\netcoreapp3.1\btre2.MvcApplicationPartsAssemblyInfo.cache
