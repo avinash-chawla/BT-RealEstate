@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+
 
 namespace btre2.Repository.Manager
 {
@@ -28,7 +31,8 @@ namespace btre2.Repository.Manager
                             ApplicationDbContext context, 
                             IWebHostEnvironment hostEnvironment,
                             UserManager<ApplicationUser> userManager,
-                            IHttpContextAccessor httpContextAccessor)
+                            IHttpContextAccessor httpContextAccessor,
+                            IConfiguration configuration)
         {
             _context = context;
             _hostEnvironment = hostEnvironment;

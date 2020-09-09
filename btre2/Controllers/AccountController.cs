@@ -74,7 +74,7 @@ namespace btre.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model, string ReturnUrl)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -83,9 +83,9 @@ namespace btre.Controllers
 
                 if (result.Succeeded)
                 {
-                    if (Url.IsLocalUrl(ReturnUrl))
+                    if (returnUrl != null)
                     {
-                        return Redirect(ReturnUrl);
+                        return Redirect(returnUrl);
                     }
                     else
                     {
