@@ -50,6 +50,8 @@ namespace btre2.Models
         [Required]
         public int Sqft { get; set; }
         public decimal LotSize { get; set; }
+
+        [Required]
         public string PhotoMain { get; set; }
         public string Photo1 { get; set; }
         public string Photo2 { get; set; }
