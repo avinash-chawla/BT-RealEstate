@@ -117,17 +117,17 @@ namespace btre2.Repository.Manager
                 RealtorId = (int) reader["RealtorId"]
             };
 
-            //var realtor = new Realtor()
-            //{
-            //    Name = reader["R_Name"].ToString(),
-            //    Phone = reader["R_Phone"].ToString(),
-            //    Email = reader["R_Email"].ToString(),
-            //    Description = reader["R_Description"].ToString(),
-            //    IsMvp = (bool) reader["R_IsMvp"],
-            //    Image = reader["R_Image"].ToString()
-            //};
+            var realtor = new Realtor()
+            {
+                Name = reader["R_Name"].ToString(),
+                Phone = reader["R_Phone"].ToString(),
+                Email = reader["R_Email"].ToString(),
+                Description = reader["R_Description"].ToString(),
+                IsMvp = (bool)reader["R_IsMvp"],
+                Image = reader["R_Image"].ToString()
+            };
 
-            //listing.Realtor = realtor;
+            listing.Realtor = realtor;
             return listing;
         }
 
