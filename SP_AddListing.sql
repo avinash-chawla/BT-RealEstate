@@ -12,7 +12,7 @@ Create procedure sp_AddListing
 		@Garage int,
 		@Sqft int,
 		@LotSize decimal,
-		@PhotoMain varchar,
+		@PhotoMain nvarchar(max),
 		@Photo1  nvarchar(max) = 'N/A',
 		@Photo2  nvarchar(max) = 'N/A',
 		@Photo3  nvarchar(max) = 'N/A',
