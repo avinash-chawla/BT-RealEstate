@@ -177,6 +177,7 @@ namespace btre2.Repository.Manager
                 cmd.Parameters.AddWithValue("@Photo6", uniqueFileName6);
                 cmd.Parameters.AddWithValue("@IsPublished", model.IsPublished);
                 cmd.Parameters.AddWithValue("@RealtorId", model.RealtorId);
+                cmd.Parameters.AddWithValue("@ListDate", DateTime.Now);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
